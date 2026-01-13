@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood on the Clocktower - FuHoo Outbreak</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Landing Page -->
+        <div id="landing-page" class="page active">
+            <div class="container">
+                <h1 class="title">Blood on the Clocktower</h1>
+                <h2 class="subtitle">FuHoo Outbreak Edition</h2>
+                <p class="description">
+                    A social deduction game where good fights evil. The town must find and execute the demon before it kills them all.
+                </p>
+                <div class="button-group">
+                    <button id="create-game-btn" class="btn btn-primary">Create Game (Storyteller)</button>
+                    <button id="join-game-btn" class="btn btn-secondary">Join Game (Player)</button>
+                    <button id="rules-btn" class="btn btn-info">Game Rules</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rules Page -->
+        <div id="rules-page" class="page">
+            <div class="container">
+                <h1>Game Rules</h1>
+                <div class="rules-content">
+                    <h2>Overview</h2>
+                    <p>Blood on the Clocktower is a bluffing game where players are secretly assigned roles. Good players must work together to identify and execute the Demon before they're eliminated.</p>
+                    
+                    <h2>Teams</h2>
+                    <ul>
+                        <li><strong>Good Team:</strong> Townsfolk and Outsiders who want to execute the Demon</li>
+                        <li><strong>Evil Team:</strong> Minions and the Demon who want to eliminate good players</li>
+                    </ul>
+                    
+                    <h2>Game Flow</h2>
+                    <ol>
+                        <li><strong>Setup:</strong> The Storyteller assigns secret roles to all players</li>
+                        <li><strong>Night Phase:</strong> Players with night actions wake up and perform their abilities</li>
+                        <li><strong>Day Phase:</strong> Players discuss, share information, and vote on who to execute</li>
+                        <li><strong>Repeat:</strong> Continue alternating between night and day until the game ends</li>
+                    </ol>
+                    
+                    <h2>Winning</h2>
+                    <ul>
+                        <li><strong>Good wins</strong> if the Demon is executed</li>
+                        <li><strong>Evil wins</strong> if only 2 players remain alive (1 good, 1 evil)</li>
+                    </ul>
+                </div>
+                <button id="back-from-rules-btn" class="btn btn-secondary">Back to Menu</button>
+            </div>
+        </div>
+
+        <!-- Create Game Page (Storyteller) -->
+        <div id="create-game-page" class="page">
+            <div class="container">
+                <h1>Create New Game</h1>
+                <div class="form-group">
+                    <label for="storyteller-name">Your Name (Storyteller):</label>
+                    <input type="text" id="storyteller-name" placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label for="game-code">Game Code:</label>
+                    <input type="text" id="game-code" readonly>
+                    <button id="generate-code-btn" class="btn btn-small">Generate Code</button>
+                </div>
+                <div class="form-group">
+                    <label for="num-players">Number of Players:</label>
+                    <input type="number" id="num-players" min="5" max="20" value="7">
+                </div>
+                <div class="button-group">
+                    <button id="start-game-btn" class="btn btn-primary">Start Game</button>
+                    <button id="cancel-create-btn" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Join Game Page -->
+        <div id="join-game-page" class="page">
+            <div class="container">
+                <h1>Join Game</h1>
+                <div class="form-group">
+                    <label for="player-name">Your Name:</label>
+                    <input type="text" id="player-name" placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label for="join-code">Game Code:</label>
+                    <input type="text" id="join-code" placeholder="Enter game code">
+                </div>
+                <div class="button-group">
+                    <button id="join-btn" class="btn btn-primary">Join Game</button>
+                    <button id="cancel-join-btn" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Storyteller Dashboard -->
+        <div id="storyteller-page" class="page">
+            <div class="container wide">
+                <div class="header">
+                    <h1>Storyteller Dashboard</h1>
+                    <div class="game-info">
+                        <span>Game Code: <strong id="st-game-code"></strong></span>
+                        <span>Phase: <strong id="st-phase"></strong></span>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="panel">
+                        <h2>Players (<span id="player-count">0</span>)</h2>
+                        <div id="players-list" class="players-list"></div>
+                    </div>
+
+                    <div class="panel">
+                        <h2>Game Controls</h2>
+                        <div class="controls">
+                            <button id="assign-roles-btn" class="btn btn-primary">Assign Roles</button>
+                            <button id="night-phase-btn" class="btn btn-info">Start Night Phase</button>
+                            <button id="day-phase-btn" class="btn btn-warning">Start Day Phase</button>
+                            <button id="end-game-btn" class="btn btn-danger">End Game</button>
+                        </div>
+                        <div class="phase-info">
+                            <h3>Current Phase Actions</h3>
+                            <div id="phase-actions"></div>
+                        </div>
+                    </div>
+
+                    <div class="panel">
+                        <h2>Role Distribution</h2>
+                        <div id="role-distribution"></div>
+                    </div>
+
+                    <div class="panel">
+                        <h2>Game Log</h2>
+                        <div id="game-log" class="game-log"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Player View -->
+        <div id="player-page" class="page">
+            <div class="container">
+                <div class="header">
+                    <h1>Blood on the Clocktower</h1>
+                    <div class="game-info">
+                        <span>Player: <strong id="p-name"></strong></span>
+                        <span>Phase: <strong id="p-phase"></strong></span>
+                    </div>
+                </div>
+
+                <div class="player-role-card" id="player-role-card">
+                    <h2>Your Role</h2>
+                    <div class="role-name" id="p-role-name">Waiting for role assignment...</div>
+                    <div class="role-team" id="p-role-team"></div>
+                    <div class="role-ability" id="p-role-ability"></div>
+                </div>
+
+                <div class="panel">
+                    <h2>Players in Game</h2>
+                    <div id="p-players-list" class="players-grid"></div>
+                </div>
+
+                <div class="panel" id="voting-panel" style="display: none;">
+                    <h2>Nomination & Voting</h2>
+                    <div id="voting-area"></div>
+                </div>
+
+                <div class="panel">
+                    <h2>Game Events</h2>
+                    <div id="p-game-log" class="game-log"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
