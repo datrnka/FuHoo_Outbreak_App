@@ -1,4 +1,4 @@
-/* Future Hooman: Outbreak at the Clinic - Styles */
+/* Future Hooman: Outbreak at the Clinic - Neumorphic Styles */
 /* Reset and Base Styles */
 * {
     margin: 0;
@@ -7,9 +7,9 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-    color: #e9ecef;
+    font-family: 'Inter', 'Segoe UI', 'SF Pro Display', sans-serif;
+    background: linear-gradient(135deg, #e8f4f8 0%, #f0f0f5 50%, #fef6f8 100%);
+    color: #4a5568;
     min-height: 100vh;
     line-height: 1.6;
 }
@@ -41,40 +41,48 @@ body {
     font-size: 3.5rem;
     text-align: center;
     margin-bottom: 10px;
-    color: #e63946;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: #9b6a9e;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8), -2px -2px 4px rgba(155, 106, 158, 0.1);
+    font-weight: 700;
+    letter-spacing: -0.5px;
 }
 
 .subtitle {
     font-size: 1.5rem;
     text-align: center;
     margin-bottom: 30px;
-    color: #f1faee;
+    color: #6b8caf;
+    font-weight: 500;
 }
 
 .description {
     text-align: center;
     font-size: 1.1rem;
     margin-bottom: 40px;
-    color: #a8dadc;
+    color: #7a8b9a;
+    font-weight: 400;
 }
 
 h1 {
     font-size: 2.5rem;
     margin-bottom: 20px;
-    color: #e63946;
+    color: #9b6a9e;
+    font-weight: 700;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
 }
 
 h2 {
     font-size: 1.8rem;
     margin-bottom: 15px;
-    color: #f1faee;
+    color: #6b8caf;
+    font-weight: 600;
 }
 
 h3 {
     font-size: 1.3rem;
     margin-bottom: 10px;
-    color: #a8dadc;
+    color: #8eacc3;
+    font-weight: 600;
 }
 
 /* Buttons */
@@ -90,59 +98,63 @@ h3 {
     padding: 15px 30px;
     font-size: 1.1rem;
     border: none;
-    border-radius: 8px;
+    border-radius: 20px;
     cursor: pointer;
     transition: all 0.3s ease;
     font-weight: 600;
     min-width: 250px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    box-shadow: 8px 8px 16px rgba(163, 177, 198, 0.4), 
+                -8px -8px 16px rgba(255, 255, 255, 0.9);
 }
 
 .btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    box-shadow: 6px 6px 12px rgba(163, 177, 198, 0.5), 
+                -6px -6px 12px rgba(255, 255, 255, 1);
 }
 
 .btn:active {
-    transform: translateY(0);
+    box-shadow: inset 4px 4px 8px rgba(163, 177, 198, 0.4), 
+                inset -4px -4px 8px rgba(255, 255, 255, 0.9);
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #e63946 0%, #d62828 100%);
-    color: white;
+    background: linear-gradient(145deg, #eac4d5, #f5d9e6);
+    color: #9b6a9e;
 }
 
 .btn-primary:hover {
-    background: linear-gradient(135deg, #d62828 0%, #c1121f 100%);
+    background: linear-gradient(145deg, #f5d9e6, #eac4d5);
+    color: #8a5a8d;
 }
 
 .btn-secondary {
-    background: linear-gradient(135deg, #457b9d 0%, #1d3557 100%);
-    color: white;
+    background: linear-gradient(145deg, #cfe2f3, #dceefb);
+    color: #6b8caf;
 }
 
 .btn-secondary:hover {
-    background: linear-gradient(135deg, #1d3557 0%, #0d1b2a 100%);
+    background: linear-gradient(145deg, #dceefb, #cfe2f3);
+    color: #5a7b9e;
 }
 
 .btn-info {
-    background: linear-gradient(135deg, #a8dadc 0%, #457b9d 100%);
-    color: #1d3557;
+    background: linear-gradient(145deg, #d4f1f4, #e0f7fa);
+    color: #4a90a4;
 }
 
 .btn-info:hover {
-    background: linear-gradient(135deg, #457b9d 0%, #1d3557 100%);
-    color: white;
+    background: linear-gradient(145deg, #e0f7fa, #d4f1f4);
+    color: #3a7d91;
 }
 
 .btn-warning {
-    background: linear-gradient(135deg, #f4a261 0%, #e76f51 100%);
-    color: white;
+    background: linear-gradient(145deg, #ffe8d6, #fff0e6);
+    color: #d97f4b;
 }
 
 .btn-danger {
-    background: linear-gradient(135deg, #e63946 0%, #780000 100%);
-    color: white;
+    background: linear-gradient(145deg, #fdd5d7, #ffe2e4);
+    color: #c85a5f;
 }
 
 .btn-small {
@@ -150,6 +162,7 @@ h3 {
     font-size: 0.9rem;
     min-width: auto;
     margin-left: 10px;
+    border-radius: 15px;
 }
 
 /* Forms */
@@ -160,38 +173,45 @@ h3 {
 .form-group label {
     display: block;
     margin-bottom: 8px;
-    color: #f1faee;
+    color: #6b8caf;
     font-weight: 600;
+    font-size: 0.95rem;
 }
 
 .form-group input {
     width: 100%;
-    padding: 12px;
-    border: 2px solid #457b9d;
-    border-radius: 6px;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 15px;
     font-size: 1rem;
-    background: rgba(255, 255, 255, 0.1);
-    color: #f1faee;
-    transition: border-color 0.3s ease;
+    background: linear-gradient(145deg, #e8f4f8, #f5f5fa);
+    color: #4a5568;
+    transition: all 0.3s ease;
+    box-shadow: inset 4px 4px 8px rgba(163, 177, 198, 0.3), 
+                inset -4px -4px 8px rgba(255, 255, 255, 0.9);
 }
 
 .form-group input:focus {
     outline: none;
-    border-color: #a8dadc;
-    background: rgba(255, 255, 255, 0.15);
+    box-shadow: inset 2px 2px 4px rgba(163, 177, 198, 0.2), 
+                inset -2px -2px 4px rgba(255, 255, 255, 1),
+                0 0 0 3px rgba(107, 140, 175, 0.1);
 }
 
 .form-group input[readonly] {
-    background: rgba(255, 255, 255, 0.05);
+    background: linear-gradient(145deg, #f0f0f5, #fafafe);
     cursor: not-allowed;
+    opacity: 0.7;
 }
 
 /* Rules Page */
 .rules-content {
-    background: rgba(255, 255, 255, 0.05);
+    background: linear-gradient(145deg, #f5f5fa, #fefeff);
     padding: 30px;
-    border-radius: 10px;
+    border-radius: 25px;
     margin-bottom: 30px;
+    box-shadow: 10px 10px 20px rgba(163, 177, 198, 0.3), 
+                -10px -10px 20px rgba(255, 255, 255, 0.9);
 }
 
 .rules-content ul, .rules-content ol {
@@ -221,9 +241,13 @@ h3 {
 }
 
 .game-info span {
-    background: rgba(255, 255, 255, 0.1);
+    background: linear-gradient(145deg, #e8f4f8, #f5f5fa);
     padding: 8px 15px;
-    border-radius: 6px;
+    border-radius: 12px;
+    box-shadow: 4px 4px 8px rgba(163, 177, 198, 0.3), 
+                -4px -4px 8px rgba(255, 255, 255, 0.9);
+    color: #6b8caf;
+    font-weight: 500;
 }
 
 /* Dashboard Grid */
@@ -235,10 +259,11 @@ h3 {
 
 /* Panels */
 .panel {
-    background: rgba(255, 255, 255, 0.05);
+    background: linear-gradient(145deg, #f5f5fa, #fefeff);
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    border-radius: 25px;
+    box-shadow: 10px 10px 20px rgba(163, 177, 198, 0.3), 
+                -10px -10px 20px rgba(255, 255, 255, 0.9);
 }
 
 /* Players List */
@@ -248,13 +273,15 @@ h3 {
 }
 
 .player-item {
-    background: rgba(255, 255, 255, 0.08);
+    background: linear-gradient(145deg, #e8f4f8, #f5f5fa);
     padding: 12px;
     margin-bottom: 10px;
-    border-radius: 6px;
+    border-radius: 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 4px 4px 8px rgba(163, 177, 198, 0.3), 
+                -4px -4px 8px rgba(255, 255, 255, 0.9);
 }
 
 .player-item.dead {
@@ -268,18 +295,22 @@ h3 {
 
 .player-role {
     font-size: 0.9rem;
-    color: #a8dadc;
+    color: #8eacc3;
 }
 
 .player-status {
     font-size: 0.85rem;
     padding: 4px 8px;
-    border-radius: 4px;
-    background: rgba(230, 57, 70, 0.3);
+    border-radius: 10px;
+    background: linear-gradient(145deg, #fdd5d7, #ffe2e4);
+    color: #c85a5f;
+    box-shadow: 2px 2px 4px rgba(163, 177, 198, 0.2), 
+                -2px -2px 4px rgba(255, 255, 255, 0.8);
 }
 
 .player-status.alive {
-    background: rgba(168, 218, 220, 0.3);
+    background: linear-gradient(145deg, #d4f1f4, #e0f7fa);
+    color: #4a90a4;
 }
 
 /* Players Grid */
@@ -291,16 +322,18 @@ h3 {
 }
 
 .player-card {
-    background: rgba(255, 255, 255, 0.08);
+    background: linear-gradient(145deg, #e8f4f8, #f5f5fa);
     padding: 15px;
-    border-radius: 8px;
+    border-radius: 18px;
     text-align: center;
-    transition: transform 0.2s ease;
+    transition: all 0.3s ease;
+    box-shadow: 6px 6px 12px rgba(163, 177, 198, 0.3), 
+                -6px -6px 12px rgba(255, 255, 255, 0.9);
 }
 
 .player-card:hover {
-    transform: translateY(-2px);
-    background: rgba(255, 255, 255, 0.12);
+    box-shadow: 4px 4px 8px rgba(163, 177, 198, 0.4), 
+                -4px -4px 8px rgba(255, 255, 255, 1);
 }
 
 .player-card.dead {
@@ -314,48 +347,53 @@ h3 {
 
 .player-card .status {
     font-size: 0.85rem;
-    color: #a8dadc;
+    color: #8eacc3;
 }
 
 /* Role Card */
 .player-role-card {
-    background: linear-gradient(135deg, rgba(230, 57, 70, 0.2) 0%, rgba(29, 53, 87, 0.3) 100%);
+    background: linear-gradient(145deg, #f5e6f0, #ffe8f5);
     padding: 30px;
-    border-radius: 15px;
+    border-radius: 25px;
     margin-bottom: 30px;
-    border: 2px solid rgba(230, 57, 70, 0.5);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    border: none;
+    box-shadow: 12px 12px 24px rgba(163, 177, 198, 0.3), 
+                -12px -12px 24px rgba(255, 255, 255, 0.9),
+                inset 0 0 0 1px rgba(155, 106, 158, 0.1);
 }
 
 .role-name {
     font-size: 2rem;
     font-weight: 700;
-    color: #e63946;
+    color: #9b6a9e;
     margin-bottom: 10px;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
 }
 
 .role-team {
     font-size: 1.2rem;
     margin-bottom: 15px;
-    color: #f1faee;
+    color: #6b8caf;
 }
 
 .role-team.good {
-    color: #a8dadc;
+    color: #4a90a4;
 }
 
 .role-team.evil {
-    color: #e63946;
+    color: #c85a5f;
 }
 
 .role-ability {
     font-size: 1rem;
     line-height: 1.8;
-    color: #f1faee;
-    background: rgba(0, 0, 0, 0.2);
+    color: #4a5568;
+    background: linear-gradient(145deg, #e8f4f8, #f5f5fa);
     padding: 15px;
-    border-radius: 8px;
+    border-radius: 15px;
     margin-top: 10px;
+    box-shadow: inset 3px 3px 6px rgba(163, 177, 198, 0.2), 
+                inset -3px -3px 6px rgba(255, 255, 255, 0.9);
 }
 
 /* Controls */
@@ -372,14 +410,16 @@ h3 {
 .phase-info {
     margin-top: 20px;
     padding: 15px;
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
+    background: linear-gradient(145deg, #e8f4f8, #f5f5fa);
+    border-radius: 15px;
+    box-shadow: inset 3px 3px 6px rgba(163, 177, 198, 0.2), 
+                inset -3px -3px 6px rgba(255, 255, 255, 0.9);
 }
 
 #phase-actions {
     margin-top: 10px;
     font-size: 0.95rem;
-    color: #a8dadc;
+    color: #6b8caf;
 }
 
 /* Role Distribution */
@@ -390,76 +430,98 @@ h3 {
 .role-item {
     padding: 8px;
     margin-bottom: 8px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 4px;
+    background: linear-gradient(145deg, #e8f4f8, #f5f5fa);
+    border-radius: 12px;
+    box-shadow: 3px 3px 6px rgba(163, 177, 198, 0.2), 
+                -3px -3px 6px rgba(255, 255, 255, 0.8);
 }
 
 /* Game Log */
 .game-log {
     max-height: 300px;
     overflow-y: auto;
-    background: rgba(0, 0, 0, 0.2);
+    background: linear-gradient(145deg, #e8f4f8, #f5f5fa);
     padding: 15px;
-    border-radius: 8px;
+    border-radius: 15px;
+    box-shadow: inset 4px 4px 8px rgba(163, 177, 198, 0.2), 
+                inset -4px -4px 8px rgba(255, 255, 255, 0.9);
 }
 
 .log-entry {
     padding: 8px;
     margin-bottom: 8px;
-    border-left: 3px solid #457b9d;
+    border-left: 3px solid #6b8caf;
     padding-left: 12px;
     font-size: 0.9rem;
+    background: linear-gradient(145deg, #f5f5fa, #fefeff);
+    border-radius: 8px;
 }
 
 .log-entry.important {
-    border-left-color: #e63946;
-    background: rgba(230, 57, 70, 0.1);
+    border-left-color: #c85a5f;
+    background: linear-gradient(145deg, #fdd5d7, #ffe2e4);
 }
 
 .log-timestamp {
     font-size: 0.8rem;
-    color: #a8dadc;
+    color: #8eacc3;
     margin-right: 8px;
 }
 
 /* Voting */
 #voting-area {
     padding: 20px;
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
+    background: linear-gradient(145deg, #e8f4f8, #f5f5fa);
+    border-radius: 18px;
+    box-shadow: inset 4px 4px 8px rgba(163, 177, 198, 0.2), 
+                inset -4px -4px 8px rgba(255, 255, 255, 0.9);
 }
 
 .vote-btn {
     margin: 5px;
     padding: 10px 20px;
-    background: #457b9d;
-    color: white;
+    background: linear-gradient(145deg, #cfe2f3, #dceefb);
+    color: #6b8caf;
     border: none;
-    border-radius: 6px;
+    border-radius: 15px;
     cursor: pointer;
+    box-shadow: 4px 4px 8px rgba(163, 177, 198, 0.3), 
+                -4px -4px 8px rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
+    font-weight: 500;
 }
 
 .vote-btn:hover {
-    background: #1d3557;
+    box-shadow: 3px 3px 6px rgba(163, 177, 198, 0.4), 
+                -3px -3px 6px rgba(255, 255, 255, 1);
+}
+
+.vote-btn:active {
+    box-shadow: inset 2px 2px 4px rgba(163, 177, 198, 0.3), 
+                inset -2px -2px 4px rgba(255, 255, 255, 0.9);
 }
 
 /* Scrollbar Styling */
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 4px;
+    background: linear-gradient(145deg, #e8f4f8, #f5f5fa);
+    border-radius: 10px;
+    box-shadow: inset 2px 2px 4px rgba(163, 177, 198, 0.2), 
+                inset -2px -2px 4px rgba(255, 255, 255, 0.9);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgba(168, 218, 220, 0.3);
-    border-radius: 4px;
+    background: linear-gradient(145deg, #b8cfe0, #c8dce8);
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px rgba(163, 177, 198, 0.2), 
+                -2px -2px 4px rgba(255, 255, 255, 0.8);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(168, 218, 220, 0.5);
+    background: linear-gradient(145deg, #a8c1d4, #b8cfe0);
 }
 
 /* Responsive Design */
