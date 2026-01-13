@@ -1,4 +1,4 @@
-// Blood on the Clocktower - Game Logic
+// Future Hooman: Outbreak at the Clinic - Game Logic
 
 // Game State
 const gameState = {
@@ -6,153 +6,153 @@ const gameState = {
     gameCode: null,
     playerName: null,
     players: [],
-    currentPhase: 'setup', // 'setup', 'night', 'day'
+    currentPhase: 'setup', // 'setup', 'stasis', 'active'
     nightCount: 0,
     dayCount: 0,
     roles: [],
     gameLog: []
 };
 
-// Role Definitions (Trouble Brewing Edition)
+// Role Definitions (Future Hooman Edition)
 const ROLES = {
-    // Townsfolk (Good)
+    // Clinicians (Good)
     washerwoman: {
-        name: "Washerwoman",
-        team: "good",
-        type: "townsfolk",
-        ability: "You start knowing that 1 of 2 players is a particular Townsfolk."
+        name: "HR Representative",
+        team: "clinicians",
+        type: "clinician",
+        ability: "You start knowing that 1 of 2 staff members is a particular Clinician role."
     },
     librarian: {
-        name: "Librarian",
-        team: "good",
-        type: "townsfolk",
-        ability: "You start knowing that 1 of 2 players is a particular Outsider. (Or that zero are in play.)"
+        name: "Outreach Coordinator",
+        team: "clinicians",
+        type: "clinician",
+        ability: "You start knowing that 1 of 2 staff members is a particular FHEELS operative. (Or that zero are in play.)"
     },
     investigator: {
-        name: "Investigator",
-        team: "good",
-        type: "townsfolk",
-        ability: "You start knowing that 1 of 2 players is a particular Minion."
+        name: "Internal Investigator",
+        team: "clinicians",
+        type: "clinician",
+        ability: "You start knowing that 1 of 2 staff members is a particular SigSev operative."
     },
     chef: {
-        name: "Chef",
-        team: "good",
-        type: "townsfolk",
-        ability: "You start knowing how many pairs of evil players there are."
+        name: "Project Manager",
+        team: "clinicians",
+        type: "clinician",
+        ability: "You start knowing how many pairs of SigSev operatives there are."
     },
     empath: {
-        name: "Empath",
-        team: "good",
-        type: "townsfolk",
-        ability: "Each night, you learn how many of your living neighbors are evil."
+        name: "Mind Melder",
+        team: "clinicians",
+        type: "clinician",
+        ability: "Each power cycle, you learn how many of your adjacent staff members are SigSev."
     },
     fortuneteller: {
-        name: "Fortune Teller",
-        team: "good",
-        type: "townsfolk",
-        ability: "Each night, choose 2 players: you learn if either is a Demon."
+        name: "Virologist",
+        team: "clinicians",
+        type: "clinician",
+        ability: "Each power cycle, choose 2 staff: you learn if either is the Inoculator."
     },
     undertaker: {
-        name: "Undertaker",
-        team: "good",
-        type: "townsfolk",
-        ability: "Each night except the first, you learn which character died by execution today."
+        name: "Interrogator",
+        team: "clinicians",
+        type: "clinician",
+        ability: "Each power cycle except the first, you learn which role was quarantined today."
     },
     monk: {
-        name: "Monk",
-        team: "good",
-        type: "townsfolk",
-        ability: "Each night except the first, choose a player (not yourself): they are safe from the Demon tonight."
+        name: "Pharmacist",
+        team: "clinicians",
+        type: "clinician",
+        ability: "Each power cycle except the first, choose a staff member (not yourself): they are protected from the Inoculator during stasis."
     },
     ravenkeeper: {
-        name: "Ravenkeeper",
-        team: "good",
-        type: "townsfolk",
-        ability: "If you die at night, you are woken to choose a player: you learn their character."
+        name: "Metabolist",
+        team: "clinicians",
+        type: "clinician",
+        ability: "If you are inoculated during stasis, you are woken to choose a staff member: you learn their role."
     },
     virgin: {
-        name: "Virgin",
-        team: "good",
-        type: "townsfolk",
-        ability: "The first time you are nominated, if the nominator is a Townsfolk, they are executed immediately."
+        name: "Executive Assistant (Nepo Baby)",
+        team: "clinicians",
+        type: "clinician",
+        ability: "The first time you are nominated for quarantine, if the nominator is a Clinician, they are quarantined immediately."
     },
     slayer: {
-        name: "Slayer",
-        team: "good",
-        type: "townsfolk",
-        ability: "Once per game, during the day, publicly choose a player: if they are the Demon, they die."
+        name: "Neutralizer",
+        team: "clinicians",
+        type: "clinician",
+        ability: "Once per session, during active hours, publicly choose a staff member: if they are the Inoculator, they are neutralized."
     },
     soldier: {
-        name: "Soldier",
-        team: "good",
-        type: "townsfolk",
-        ability: "You are safe from the Demon."
+        name: "The Immune",
+        team: "clinicians",
+        type: "clinician",
+        ability: "You are immune to the Inoculator."
     },
     mayor: {
-        name: "Mayor",
-        team: "good",
-        type: "townsfolk",
-        ability: "If only 3 players live and no execution occurs, your team wins."
+        name: "Plan Z / Contingency Executive",
+        team: "clinicians",
+        type: "clinician",
+        ability: "If only 3 staff remain and no quarantine occurs, Clinicians win."
     },
     
-    // Outsiders (Good but with drawbacks)
+    // FHEELS (Good but with complications)
     butler: {
-        name: "Butler",
-        team: "good",
-        type: "outsider",
-        ability: "Each night, choose a player (not yourself): tomorrow, you may only vote if they are voting too."
+        name: "Intern",
+        team: "clinicians",
+        type: "fheels",
+        ability: "Each power cycle, choose a staff member (not yourself): during active hours, you may only vote if they are voting too."
     },
     drunk: {
-        name: "Drunk",
-        team: "good",
-        type: "outsider",
-        ability: "You do not know you are the Drunk. You think you are a Townsfolk, but your ability does not work."
+        name: "Corporate Simp",
+        team: "clinicians",
+        type: "fheels",
+        ability: "You do not know you are the Corporate Simp. You think you are a Clinician, but your ability does not work."
     },
     recluse: {
-        name: "Recluse",
-        team: "good",
-        type: "outsider",
-        ability: "You might register as evil and as a Minion or Demon, even if dead."
+        name: "Sympathizer",
+        team: "clinicians",
+        type: "fheels",
+        ability: "You might register as SigSev and as an operative or the Inoculator, even if neutralized."
     },
     saint: {
-        name: "Saint",
-        team: "good",
-        type: "outsider",
-        ability: "If you die by execution, your team loses."
+        name: "FHEELS Executive",
+        team: "clinicians",
+        type: "fheels",
+        ability: "If you are quarantined, Clinicians lose."
     },
     
-    // Minions (Evil)
+    // SigSev Operatives (Evil)
     poisoner: {
-        name: "Poisoner",
-        team: "evil",
-        type: "minion",
-        ability: "Each night, choose a player: they are poisoned tonight and tomorrow day."
+        name: "Signal Jacker",
+        team: "sigsev",
+        type: "operative",
+        ability: "Each power cycle, choose a staff member: they are signal jacked during stasis and the following active period."
     },
     spy: {
-        name: "Spy",
-        team: "evil",
-        type: "minion",
-        ability: "Each night, you see the Grimoire. You might register as good and as a Townsfolk or Outsider."
+        name: "Embedded Observer",
+        team: "sigsev",
+        type: "operative",
+        ability: "Each power cycle, you see the Health Records. You might register as Clinician."
     },
     scarletwoman: {
-        name: "Scarlet Woman",
-        team: "evil",
-        type: "minion",
-        ability: "If there are 5 or more players alive and the Demon dies, you become the Demon."
+        name: "Lieutenant / Clone",
+        team: "sigsev",
+        type: "operative",
+        ability: "If there are 5 or more staff active and the Inoculator is neutralized, you become the Inoculator."
     },
     baron: {
-        name: "Baron",
-        team: "evil",
-        type: "minion",
-        ability: "There are extra Outsiders in play."
+        name: "Propagandist / Recruiter",
+        team: "sigsev",
+        type: "operative",
+        ability: "There are extra FHEELS operatives in play."
     },
     
-    // Demons (Evil)
+    // Inoculator (SigSev Leadership)
     imp: {
-        name: "Imp",
-        team: "evil",
-        type: "demon",
-        ability: "Each night except the first, choose a player: they die. If you kill yourself, a Minion becomes the Imp."
+        name: "Inoculator (Patient Zero)",
+        team: "sigsev",
+        type: "inoculator",
+        ability: "Each power cycle except the first, choose a staff member: they are inoculated. If you inoculate yourself, an operative becomes the Inoculator."
     }
 };
 
@@ -251,9 +251,9 @@ document.getElementById('start-game-btn')?.addEventListener('click', () => {
     gameState.currentPhase = 'setup';
     
     // Initialize with storyteller
-    addToGameLog(`Game created by ${name}`, true);
-    addToGameLog(`Game code: ${gameState.gameCode}`);
-    addToGameLog(`Waiting for ${numPlayers} players to join...`);
+    addToGameLog(`Session initialized by ${name}`, true);
+    addToGameLog(`Session code: ${gameState.gameCode}`);
+    addToGameLog(`Awaiting ${numPlayers} staff members to join...`);
     
     setupStorytellerDashboard();
     showPage('storyteller-page');
@@ -285,7 +285,7 @@ document.getElementById('join-btn')?.addEventListener('click', () => {
     
     // Add player to game
     addPlayer(name);
-    addToGameLog(`${name} joined the game`, true);
+    addToGameLog(`${name} joined the session`, true);
     
     setupPlayerView();
     showPage('player-page');
@@ -323,7 +323,7 @@ function updatePlayersDisplay() {
                     <div class="player-role">${player.role ? player.role.name : 'No role assigned'}</div>
                 </div>
                 <span class="player-status ${player.alive ? 'alive' : 'dead'}">
-                    ${player.alive ? 'Alive' : 'Dead'}
+                    ${player.alive ? 'Active' : 'Neutralized'}
                 </span>
             </div>
         `).join('');
@@ -335,7 +335,7 @@ function updatePlayersDisplay() {
         pPlayersListElem.innerHTML = gameState.players.map(player => `
             <div class="player-card ${player.alive ? '' : 'dead'}">
                 <div class="name">${player.name}</div>
-                <div class="status">${player.alive ? '⚫ Alive' : '💀 Dead'}</div>
+                <div class="status">${player.alive ? '✓ Active' : '✗ Neutralized'}</div>
             </div>
         `).join('');
     }
@@ -351,8 +351,8 @@ function setupStorytellerDashboard() {
 
 function updatePhaseDisplay() {
     const phaseText = gameState.currentPhase === 'setup' ? 'Setup' :
-                     gameState.currentPhase === 'night' ? `Night ${gameState.nightCount}` :
-                     `Day ${gameState.dayCount}`;
+                     gameState.currentPhase === 'night' ? `Power Cycle ${gameState.nightCount} (Stasis)` :
+                     `Cycle ${gameState.dayCount} (Active)`;
     
     const stPhaseElem = document.getElementById('st-phase');
     if (stPhaseElem) stPhaseElem.textContent = phaseText;
@@ -368,23 +368,23 @@ function updatePhaseActions() {
     if (!actionsElem) return;
     
     if (gameState.currentPhase === 'setup') {
-        actionsElem.innerHTML = '<p>Assign roles to players before starting the game.</p>';
+        actionsElem.innerHTML = '<p>Assign roles to staff members before starting the session.</p>';
     } else if (gameState.currentPhase === 'night') {
         actionsElem.innerHTML = `
-            <p>Night Phase Actions:</p>
+            <p>Power Cycle (Stasis) Actions:</p>
             <ul>
-                <li>Wake players with night abilities</li>
-                <li>Demon chooses a victim</li>
-                <li>Process all night actions</li>
+                <li>Wake staff with stasis abilities</li>
+                <li>Inoculator chooses a target</li>
+                <li>Process all stasis actions</li>
             </ul>
         `;
     } else if (gameState.currentPhase === 'day') {
         actionsElem.innerHTML = `
-            <p>Day Phase Actions:</p>
+            <p>Active Cycle Actions:</p>
             <ul>
-                <li>Players discuss and share information</li>
-                <li>Players nominate and vote on executions</li>
-                <li>Execute player if they receive majority votes</li>
+                <li>Staff discuss and share information</li>
+                <li>Staff nominate and vote on quarantine</li>
+                <li>Quarantine staff member if they receive majority votes</li>
             </ul>
         `;
     }
@@ -396,7 +396,7 @@ function updateRoleDistribution() {
     
     const numPlayers = gameState.players.length;
     if (numPlayers === 0) {
-        roleDistElem.innerHTML = '<p>No players yet</p>';
+        roleDistElem.innerHTML = '<p>No staff members yet</p>';
         return;
     }
     
@@ -404,10 +404,10 @@ function updateRoleDistribution() {
     let distribution = calculateRoleDistribution(numPlayers);
     
     roleDistElem.innerHTML = `
-        <div class="role-item">Townsfolk: ${distribution.townsfolk}</div>
-        <div class="role-item">Outsiders: ${distribution.outsiders}</div>
-        <div class="role-item">Minions: ${distribution.minions}</div>
-        <div class="role-item">Demons: ${distribution.demons}</div>
+        <div class="role-item">Clinicians: ${distribution.townsfolk}</div>
+        <div class="role-item">FHEELS: ${distribution.outsiders}</div>
+        <div class="role-item">SigSev Operatives: ${distribution.minions}</div>
+        <div class="role-item">Inoculator: ${distribution.demons}</div>
         <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.2);">
             <strong>Total: ${numPlayers}</strong>
         </div>
@@ -436,13 +436,13 @@ function calculateRoleDistribution(numPlayers) {
 // Role Assignment
 document.getElementById('assign-roles-btn')?.addEventListener('click', () => {
     if (gameState.players.length < 5) {
-        alert('Need at least 5 players to start the game');
+        alert('Need at least 5 staff members to start the session');
         return;
     }
     
     assignRolesToPlayers();
-    addToGameLog('Roles have been assigned to all players', true);
-    alert('Roles assigned! Share role information with each player privately.');
+    addToGameLog('Roles have been assigned to all staff members', true);
+    alert('Roles assigned! Share role information with each staff member privately.');
     updatePlayersDisplay();
 });
 
@@ -453,26 +453,26 @@ function assignRolesToPlayers() {
     // Create role pool
     const rolePool = [];
     
-    // Add townsfolk
-    const townsfolkRoles = Object.values(ROLES).filter(r => r.type === 'townsfolk');
+    // Add clinicians
+    const townsfolkRoles = Object.values(ROLES).filter(r => r.type === 'clinician');
     for (let i = 0; i < distribution.townsfolk; i++) {
         rolePool.push(townsfolkRoles[i % townsfolkRoles.length]);
     }
     
-    // Add outsiders
-    const outsiderRoles = Object.values(ROLES).filter(r => r.type === 'outsider');
+    // Add FHEELS
+    const outsiderRoles = Object.values(ROLES).filter(r => r.type === 'fheels');
     for (let i = 0; i < distribution.outsiders; i++) {
         rolePool.push(outsiderRoles[i % outsiderRoles.length]);
     }
     
-    // Add minions
-    const minionRoles = Object.values(ROLES).filter(r => r.type === 'minion');
+    // Add SigSev operatives
+    const minionRoles = Object.values(ROLES).filter(r => r.type === 'operative');
     for (let i = 0; i < distribution.minions; i++) {
         rolePool.push(minionRoles[i % minionRoles.length]);
     }
     
-    // Add demon
-    const demonRoles = Object.values(ROLES).filter(r => r.type === 'demon');
+    // Add Inoculator
+    const demonRoles = Object.values(ROLES).filter(r => r.type === 'inoculator');
     rolePool.push(demonRoles[0]);
     
     // Shuffle and assign
@@ -494,21 +494,21 @@ document.getElementById('night-phase-btn')?.addEventListener('click', () => {
     gameState.currentPhase = 'night';
     gameState.nightCount++;
     gameState.players.forEach(p => p.votedToday = false);
-    addToGameLog(`Night ${gameState.nightCount} begins`, true);
+    addToGameLog(`Power Cycle ${gameState.nightCount} begins - entering stasis`, true);
     updatePhaseDisplay();
 });
 
 document.getElementById('day-phase-btn')?.addEventListener('click', () => {
     gameState.currentPhase = 'day';
     gameState.dayCount++;
-    addToGameLog(`Day ${gameState.dayCount} begins`, true);
+    addToGameLog(`Cycle ${gameState.dayCount} begins - staff are now active`, true);
     updatePhaseDisplay();
 });
 
 document.getElementById('end-game-btn')?.addEventListener('click', () => {
-    if (confirm('Are you sure you want to end the game?')) {
-        addToGameLog('Game ended by Storyteller', true);
-        alert('Game ended. Thank you for playing!');
+    if (confirm('Are you sure you want to end the session?')) {
+        addToGameLog('Session ended by Helper Bot 3000', true);
+        alert('Session ended. Thank you for your cooperation.');
         showPage('landing-page');
         resetGameState();
     }
@@ -531,7 +531,7 @@ function setupPlayerView() {
     document.getElementById('p-name').textContent = gameState.playerName;
     updatePhaseDisplay();
     
-    // NOTE: In a production app, this would wait for actual role assignment from the storyteller
+    // NOTE: In a production app, this would wait for actual role assignment from Helper Bot 3000
     // via a backend service. This is a client-side demo simulation.
     setTimeout(() => {
         simulatePlayerRole();
@@ -540,7 +540,7 @@ function setupPlayerView() {
 
 function simulatePlayerRole() {
     // NOTE: This is demo functionality for client-side testing only.
-    // In a real implementation, role assignment would come from the storyteller via a backend.
+    // In a real implementation, role assignment would come from Helper Bot 3000 via a backend.
     const allRoles = Object.values(ROLES);
     const randomRole = allRoles[Math.floor(Math.random() * allRoles.length)];
     
@@ -550,12 +550,12 @@ function simulatePlayerRole() {
     
     if (roleNameElem) {
         roleNameElem.textContent = randomRole.name;
-        roleNameElem.style.color = randomRole.team === 'good' ? '#a8dadc' : '#e63946';
+        roleNameElem.style.color = randomRole.team === 'clinicians' ? '#a8dadc' : '#e63946';
     }
     
     if (roleTeamElem) {
-        roleTeamElem.textContent = `Team: ${randomRole.team.toUpperCase()}`;
-        roleTeamElem.className = `role-team ${randomRole.team}`;
+        roleTeamElem.textContent = `Faction: ${randomRole.team.toUpperCase()}`;
+        roleTeamElem.className = `role-team ${randomRole.team === 'clinicians' ? 'good' : 'evil'}`;
     }
     
     if (roleAbilityElem) {
@@ -573,5 +573,5 @@ function simulatePlayerRole() {
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
-    addToGameLog('Welcome to Blood on the Clocktower!');
+    addToGameLog('Welcome to Future Hooman: Outbreak at the Clinic. Helper Bot 3000 is standing by.');
 });

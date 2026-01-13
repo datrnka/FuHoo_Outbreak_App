@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blood on the Clocktower - FuHoo Outbreak</title>
+    <title>Future Hooman: Outbreak at the Clinic</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -11,15 +11,15 @@
         <!-- Landing Page -->
         <div id="landing-page" class="page active">
             <div class="container">
-                <h1 class="title">Blood on the Clocktower</h1>
-                <h2 class="subtitle">FuHoo Outbreak Edition</h2>
+                <h1 class="title">Future Hooman</h1>
+                <h2 class="subtitle">Outbreak at the Clinic</h2>
                 <p class="description">
-                    A social deduction game where good fights evil. The town must find and execute the demon before it kills them all.
+                    A crisis has emerged at the interdimensional clinic. Clinicians must identify and quarantine the saboteurs before they neutralize everyone.
                 </p>
                 <div class="button-group">
-                    <button id="create-game-btn" class="btn btn-primary">Create Game (Storyteller)</button>
-                    <button id="join-game-btn" class="btn btn-secondary">Join Game (Player)</button>
-                    <button id="rules-btn" class="btn btn-info">Game Rules</button>
+                    <button id="create-game-btn" class="btn btn-primary">Create Game (Helper Bot 3000)</button>
+                    <button id="join-game-btn" class="btn btn-secondary">Join Game (Clinician)</button>
+                    <button id="rules-btn" class="btn btn-info">Operational Protocols</button>
                 </div>
             </div>
         </div>
@@ -27,54 +27,54 @@
         <!-- Rules Page -->
         <div id="rules-page" class="page">
             <div class="container">
-                <h1>Game Rules</h1>
+                <h1>Operational Protocols</h1>
                 <div class="rules-content">
                     <h2>Overview</h2>
-                    <p>Blood on the Clocktower is a bluffing game where players are secretly assigned roles. Good players must work together to identify and execute the Demon before they're eliminated.</p>
+                    <p>Future Hooman: Outbreak at the Clinic is a social deduction game where staff are secretly assigned roles. Clinicians must work together to identify and quarantine the Inoculator before everyone is neutralized.</p>
                     
-                    <h2>Teams</h2>
+                    <h2>Factions</h2>
                     <ul>
-                        <li><strong>Good Team:</strong> Townsfolk and Outsiders who want to execute the Demon</li>
-                        <li><strong>Evil Team:</strong> Minions and the Demon who want to eliminate good players</li>
+                        <li><strong>Clinicians:</strong> PHAX staff and aligned operators who want to quarantine the Inoculator</li>
+                        <li><strong>SigSev:</strong> Signal Severed saboteurs who want to neutralize Clinicians</li>
                     </ul>
                     
                     <h2>Game Flow</h2>
                     <ol>
-                        <li><strong>Setup:</strong> The Storyteller assigns secret roles to all players</li>
-                        <li><strong>Night Phase:</strong> Players with night actions wake up and perform their abilities</li>
-                        <li><strong>Day Phase:</strong> Players discuss, share information, and vote on who to execute</li>
-                        <li><strong>Repeat:</strong> Continue alternating between night and day until the game ends</li>
+                        <li><strong>Setup:</strong> Helper Bot 3000 assigns secret roles to all staff</li>
+                        <li><strong>Power Cycle (Stasis):</strong> Staff with stasis actions perform their abilities</li>
+                        <li><strong>Between Power Cycles:</strong> Staff discuss, share information, and vote on who to quarantine</li>
+                        <li><strong>Repeat:</strong> Continue alternating between stasis and active cycles until the outbreak resolves</li>
                     </ol>
                     
-                    <h2>Winning</h2>
+                    <h2>Victory Conditions</h2>
                     <ul>
-                        <li><strong>Good wins</strong> if the Demon is executed</li>
-                        <li><strong>Evil wins</strong> if only 2 players remain alive (1 good, 1 evil)</li>
+                        <li><strong>Clinicians win</strong> if the Inoculator is quarantined</li>
+                        <li><strong>SigSev wins</strong> if only 2 staff remain (1 Clinician, 1 SigSev)</li>
                     </ul>
                 </div>
                 <button id="back-from-rules-btn" class="btn btn-secondary">Back to Menu</button>
             </div>
         </div>
 
-        <!-- Create Game Page (Storyteller) -->
+        <!-- Create Game Page (Helper Bot 3000) -->
         <div id="create-game-page" class="page">
             <div class="container">
-                <h1>Create New Game</h1>
+                <h1>Initialize New Session</h1>
                 <div class="form-group">
-                    <label for="storyteller-name">Your Name (Storyteller):</label>
+                    <label for="storyteller-name">Your Name (Helper Bot 3000 Operator):</label>
                     <input type="text" id="storyteller-name" placeholder="Enter your name">
                 </div>
                 <div class="form-group">
-                    <label for="game-code">Game Code:</label>
+                    <label for="game-code">Session Code:</label>
                     <input type="text" id="game-code" readonly>
                     <button id="generate-code-btn" class="btn btn-small">Generate Code</button>
                 </div>
                 <div class="form-group">
-                    <label for="num-players">Number of Players:</label>
+                    <label for="num-players">Number of Staff:</label>
                     <input type="number" id="num-players" min="5" max="20" value="7">
                 </div>
                 <div class="button-group">
-                    <button id="start-game-btn" class="btn btn-primary">Start Game</button>
+                    <button id="start-game-btn" class="btn btn-primary">Start Session</button>
                     <button id="cancel-create-btn" class="btn btn-secondary">Cancel</button>
                 </div>
             </div>
@@ -83,46 +83,46 @@
         <!-- Join Game Page -->
         <div id="join-game-page" class="page">
             <div class="container">
-                <h1>Join Game</h1>
+                <h1>Join Session</h1>
                 <div class="form-group">
                     <label for="player-name">Your Name:</label>
                     <input type="text" id="player-name" placeholder="Enter your name">
                 </div>
                 <div class="form-group">
-                    <label for="join-code">Game Code:</label>
-                    <input type="text" id="join-code" placeholder="Enter game code">
+                    <label for="join-code">Session Code:</label>
+                    <input type="text" id="join-code" placeholder="Enter session code">
                 </div>
                 <div class="button-group">
-                    <button id="join-btn" class="btn btn-primary">Join Game</button>
+                    <button id="join-btn" class="btn btn-primary">Join Session</button>
                     <button id="cancel-join-btn" class="btn btn-secondary">Cancel</button>
                 </div>
             </div>
         </div>
 
-        <!-- Storyteller Dashboard -->
+        <!-- Helper Bot 3000 Dashboard -->
         <div id="storyteller-page" class="page">
             <div class="container wide">
                 <div class="header">
-                    <h1>Storyteller Dashboard</h1>
+                    <h1>Helper Bot 3000 Dashboard</h1>
                     <div class="game-info">
-                        <span>Game Code: <strong id="st-game-code"></strong></span>
+                        <span>Session Code: <strong id="st-game-code"></strong></span>
                         <span>Phase: <strong id="st-phase"></strong></span>
                     </div>
                 </div>
 
                 <div class="dashboard-grid">
                     <div class="panel">
-                        <h2>Players (<span id="player-count">0</span>)</h2>
+                        <h2>Clinic Staff (<span id="player-count">0</span>)</h2>
                         <div id="players-list" class="players-list"></div>
                     </div>
 
                     <div class="panel">
-                        <h2>Game Controls</h2>
+                        <h2>Session Controls</h2>
                         <div class="controls">
                             <button id="assign-roles-btn" class="btn btn-primary">Assign Roles</button>
-                            <button id="night-phase-btn" class="btn btn-info">Start Night Phase</button>
-                            <button id="day-phase-btn" class="btn btn-warning">Start Day Phase</button>
-                            <button id="end-game-btn" class="btn btn-danger">End Game</button>
+                            <button id="night-phase-btn" class="btn btn-info">Start Power Cycle</button>
+                            <button id="day-phase-btn" class="btn btn-warning">Start Active Cycle</button>
+                            <button id="end-game-btn" class="btn btn-danger">End Session</button>
                         </div>
                         <div class="phase-info">
                             <h3>Current Phase Actions</h3>
@@ -136,7 +136,7 @@
                     </div>
 
                     <div class="panel">
-                        <h2>Game Log</h2>
+                        <h2>Activity Log</h2>
                         <div id="game-log" class="game-log"></div>
                     </div>
                 </div>
@@ -147,9 +147,9 @@
         <div id="player-page" class="page">
             <div class="container">
                 <div class="header">
-                    <h1>Blood on the Clocktower</h1>
+                    <h1>Future Hooman: Outbreak</h1>
                     <div class="game-info">
-                        <span>Player: <strong id="p-name"></strong></span>
+                        <span>Staff: <strong id="p-name"></strong></span>
                         <span>Phase: <strong id="p-phase"></strong></span>
                     </div>
                 </div>
@@ -162,17 +162,17 @@
                 </div>
 
                 <div class="panel">
-                    <h2>Players in Game</h2>
+                    <h2>Staff in Session</h2>
                     <div id="p-players-list" class="players-grid"></div>
                 </div>
 
                 <div class="panel" id="voting-panel" style="display: none;">
-                    <h2>Nomination & Voting</h2>
+                    <h2>Quarantine Nomination</h2>
                     <div id="voting-area"></div>
                 </div>
 
                 <div class="panel">
-                    <h2>Game Events</h2>
+                    <h2>Activity Log</h2>
                     <div id="p-game-log" class="game-log"></div>
                 </div>
             </div>
