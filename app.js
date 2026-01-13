@@ -176,14 +176,20 @@ function addToGameLog(message, important = false) {
     updateGameLogDisplay();
 }
 
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
 function updateGameLogDisplay() {
     const storytellerLog = document.getElementById('game-log');
     const playerLog = document.getElementById('p-game-log');
     
     const logHTML = gameState.gameLog.slice(-10).reverse().map(entry => `
         <div class="log-entry ${entry.important ? 'important' : ''}">
-            <span class="log-timestamp">${entry.timestamp}</span>
-            <span>${entry.message}</span>
+            <span class="log-timestamp">${escapeHtml(entry.timestamp)}</span>
+            <span>${escapeHtml(entry.message)}</span>
         </div>
     `).join('');
     
@@ -525,14 +531,16 @@ function setupPlayerView() {
     document.getElementById('p-name').textContent = gameState.playerName;
     updatePhaseDisplay();
     
-    // Simulate role assignment after a delay
+    // NOTE: In a production app, this would wait for actual role assignment from the storyteller
+    // via a backend service. This is a client-side demo simulation.
     setTimeout(() => {
         simulatePlayerRole();
     }, 2000);
 }
 
 function simulatePlayerRole() {
-    // For demo purposes, assign a random role to the player
+    // NOTE: This is demo functionality for client-side testing only.
+    // In a real implementation, role assignment would come from the storyteller via a backend.
     const allRoles = Object.values(ROLES);
     const randomRole = allRoles[Math.floor(Math.random() * allRoles.length)];
     
@@ -556,7 +564,7 @@ function simulatePlayerRole() {
     
     addToGameLog(`You have been assigned the role: ${randomRole.name}`);
     
-    // Add some simulated players for demo
+    // NOTE: Demo player list for UI testing. In production, this would sync with actual game state.
     if (gameState.players.length === 0) {
         const demoNames = ['Alice', 'Bob', 'Charlie', 'Diana', 'Eve', 'Frank', gameState.playerName];
         demoNames.forEach(name => addPlayer(name));
@@ -565,6 +573,5 @@ function simulatePlayerRole() {
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('Blood on the Clocktower - FuHoo Outbreak Edition loaded');
     addToGameLog('Welcome to Blood on the Clocktower!');
 });
